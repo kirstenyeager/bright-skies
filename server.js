@@ -1,16 +1,33 @@
-const express = require('express');
+
 const axios = require('axios')
 const hbs = require('hbs');
 const fs = require('fs');
 const port = process.env.PORT || 3000;
-var cors = require('cors');
-var app = express();
+//var cors = require('cors');
 
-app.use(cors());
 
-app.get('/products/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
+// app.use(cors());
+
+// app.get('/products/:id', function (req, res, next) {
+//   res.json({msg: 'This is CORS-enabled for all origins!'})
+// })
+
+//config proxy server for cross application access
+
+const http = require('http');
+const proxy = require('middleware-proxy');
+ const express = require('express')
+ , app = express()
+ ,server = require('http').createServer(app)
+ , io = require("socket.io").listen(server);
+ app.use(express.static(__dirname + '/app'));
+ app.set('port', process.env.PORT || 3000);
+ app.use(proxy('/service', 'http://localhost:8080'));
+ 
+// http.createServer(app).listen(app.get('port'), function() {
+//     console.log(`Express server listening on port ${app.get('port')}`);
+// });
+
 
 hbs.registerPartials(__dirname + '/views/partials');
 
