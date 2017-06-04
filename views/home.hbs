@@ -35,13 +35,14 @@ axios.get(geocodedUrl).then((response) => {
 	//document.write(response.data);
 	var lat = response.data.results[0].geometry.location.lat;
 	var lng = response.data.results[0].geometry.location.lng;
+	var key = "48c82fb555848b47af534fa60c40d3da";
 	
-	var weather =`https://api.forecast.io/forecast/48c82fb555848b47af534fa60c40d3da/${lat},${lng}`;
+	var weather =`https://api.forecast.io/forecast/${key}/${lat},${lng}`;
 	document.getElementById("car").innerHTML = ("Your darksky url is " + weather);
 	//document.getElementById("result").innerHTML = `Address: ${response.data.results[0].formatted_address}`;
 	//alert(weather); //https://api.darksky.net/forecast/48c82fb555848b47af534fa60c40d3da/36.1023715,-115.1745559
 	
-	return axios.get(weather);
+	return axios.post(weather);
 	//document.getElementById("results").innerHTML = (weath.data.daily.summary);
 
 
