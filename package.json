@@ -1,7 +1,7 @@
 {
-  "name": "weatherapp",
+  "name": "bright-skies",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fetches the weather from anywhere in the world (hopefully).",
   "main": "app.js",
   "dependencies": {
     "axios": "^0.13.1",
@@ -10,7 +10,8 @@
     "hbs": "^4.0.1",
     "nodemon": "^1.11.0",
     "request": "^2.81.0",
-    "yargs": "^4.8.1"
+    "yargs": "^4.8.1",
+    "cors": "2.8.3"
   },
   "devDependencies": {},
   "scripts": {
@@ -18,6 +19,14 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Kirsten Yeager",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirstenyeager/bright-skies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kirstenyeager/bright-skies/issues"
+  },
+  "homepage": "https://github.com/kirstenyeager/bright-skies#readme"
 }
