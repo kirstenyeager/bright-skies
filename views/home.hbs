@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Some Website</title>
-<link rel="stylesheet" type="text/css" href="css.css">
+<head>
+	<meta charset="utf-8">
+	<title>Some Website</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
 
-	</head>
-	<body>
+</head>
+<body>
 	<div id="top">
-	{{> header}}
-</div>
+		{{> header}}
+	</div>
 	<p>{{screamIt welcomeMessage}}</p>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">
 
-	function weather(address) {
-	//	document.getElementById("results").innerHTML = "hellos";
-		var address = document.getElementById('address').value;
-		//alert("your address is " + address);
-		//var axios = require('/node_modules/axios/lib/axios');    
-		
+		function weather(address) {
 
-//alert(address);
-	var encodedAddress = encodeURI(address);
+			var address = document.getElementById('address').value;
+			
+			var encodedAddress = encodeURI(address);
 
-//	alert("your encoded address is " + encodedAddress);
 
-var geocodedUrl = `https://maps.googleapis.com/maps/api/geocode/json?&address=${encodedAddress}`;
-document.getElementById("results").innerHTML = ("Your geocodedUrl is " + geocodedUrl); //https://maps.googleapis.com/maps/api/geocode/json?&address=11540%20SW%20107%20Court%20miami%20florida%203317
+			var geocodedUrl = `https://maps.googleapis.com/maps/api/geocode/json?&address=${encodedAddress}`;
+document.getElementById("results").innerHTML = ("Your geocodedUrl is " + geocodedUrl); //
 axios.get(geocodedUrl).then((response) => {
 	if (response.data.status === 'ZERO_RESULTS') {
 		throw new Error('Unable to find the address.');
@@ -39,25 +34,19 @@ axios.get(geocodedUrl).then((response) => {
 	
 	var weather =`https://api.forecast.io/forecast/${key}/${lat},${lng}`;
 	document.getElementById("car").innerHTML = ("Your darksky url is " + weather);
-	//document.getElementById("result").innerHTML = `Address: ${response.data.results[0].formatted_address}`;
-	//alert(weather); //https://api.darksky.net/forecast/48c82fb555848b47af534fa60c40d3da/36.1023715,-115.1745559
+	
 	
 	return axios.post(weather);
-	//document.getElementById("results").innerHTML = (weath.data.daily.summary);
+
 
 
 }).then((resp) => {
- 	document.getElementById("bee").innerHTML = `here it is ${resp.data.currently.summary}`;
-// 	document.getElementById("bee").innerHTML = `here it is ${resp.data.currently.summary}`;
-// 	document.getElementById("show").innerHTML = resp.data.currently.humidity;
-// 	//document.getElementById("results").innerHTML = `Summary: ${resp.data.currently.summary}`;
-// 	//document.getElementById("results").innerHTML = "hello";
-// 	//midity: ${resp.data.currently.humidity}`;
-// 	// document.getElementById("results").innerHTML = `Cloud Cover: ${resp.data.currently.cloudCover}`;
+	document.getElementById("bee").innerHTML = `here it is ${resp.data.currently.summary}`;
+
 })
 .catch((e) => {
 	if (e.code === 'ENOTFOUND') {
-	document.getElementById("results").innerHTML ='Unable to connect to API servers.';
+		document.getElementById("results").innerHTML ='Unable to connect to API servers.';
 	} else {
 		document.getElementById("dog").innerHTML ="your error is " + e.message;
 	}
@@ -65,25 +54,25 @@ axios.get(geocodedUrl).then((response) => {
 };
 
 
-	</script>
+</script>
 
-	<form>
+<form>
 	<fieldset>
-	<legend>What's the weather?  Enter an address to find out!</legend>
-	Address: <br>
-	<input type="text" id="address" name="address"><br>
-	<input type="button" value="submit" onclick='weather()'/>
-	<div id="results"></div>
-	<div id="show"></div>
-	<div id="car"></div>
-	<div id="bee"></div>
-	<div id="dog"></div>
+		<legend>What's the weather?  Enter an address to find out!</legend>
+		Address: <br>
+		<input type="text" id="address" name="address"><br>
+		<input type="button" value="submit" onclick='weather()'/>
+		<div id="results"></div>
+		<div id="show"></div>
+		<div id="car"></div>
+		<div id="bee"></div>
+		<div id="dog"></div>
 	</fieldset>
-	</form>
-	
+</form>
 
 
-	{{> footer}}
-	</body>
+
+{{> footer}}
+</body>
 
 </html>
