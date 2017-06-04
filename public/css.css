@@ -1,0 +1,18 @@
+body {
+background-color: lightblue;
+font-family: arial;
+}
+.header {
+background-color: green;
+font-family: arial;
+color: white;
+margin: 5;
+
+}
+#top {
+	width: 100%;
+	
+}
+.footer {
+
+}

@@ -1,0 +1,23 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.13.1",
+    "express": "^4.15.3",
+    "fs": "^0.0.1-security",
+    "hbs": "^4.0.1",
+    "nodemon": "^1.11.0",
+    "request": "^2.81.0",
+    "yargs": "^4.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
