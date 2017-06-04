@@ -17,7 +17,7 @@
 		function weather(address) {
 
 			var address = document.getElementById('address').value;
-			
+
 			var encodedAddress = encodeURI(address);
 
 
@@ -36,7 +36,7 @@ axios.get(geocodedUrl).then((response) => {
 	document.getElementById("car").innerHTML = ("Your darksky url is " + weather);
 	
 	
-	return axios.post(weather);
+	return axios.get(weather);
 
 
 
