@@ -2,38 +2,31 @@
 const axios = require('axios')
 const hbs = require('hbs');
 const fs = require('fs');
-const port = process.env.PORT || 3000;
-//var cors = require('cors');
-
-
-// app.use(cors());
-
-// app.get('/products/:id', function (req, res, next) {
-//   res.json({msg: 'This is CORS-enabled for all origins!'})
-// })
-
-//config proxy server for cross application access
+const socketIO = require('socket.io');
 
 const http = require('http');
-const proxy = require('middleware-proxy');
- const express = require('express')
- , app = express()
- ,server = require('http').createServer(app)
- , io = require("socket.io").listen(server);
- app.use(express.static(__dirname + '/app'));
- app.set('port', process.env.PORT || 3000);
- app.use(proxy('/service', 'http://localhost:8080'));
- 
-// http.createServer(app).listen(app.get('port'), function() {
-//     console.log(`Express server listening on port ${app.get('port')}`);
-// });
+
+const express = require('express')
+, app = express()
+, server = http.createServer(app);
+
+var io = socketIO(server);
+
+app.use(express.static(__dirname + '/app'));
+//app.set('port', process.env.PORT || 3000);
+//app.use(proxy('/service', 'http://localhost:8080'));
+
+const port = process.env.PORT || 3000;
 
 
+
+//create web pages with hbs
 hbs.registerPartials(__dirname + '/views/partials');
-
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
+
+//append log
 app.use((req, res, next) => {
 	var now = new Date().toString();
 
@@ -65,10 +58,18 @@ app.get('/', (req, res) =>{
 		welcomeMessage: 'Get the weather!'
 	});
 });
-app.get('/home', (req,res) => {
+
+app.get('/home', (req, res) =>{
 	res.render('home.hbs', {
 		pageTitle: 'Home Page',
 		welcomeMessage: 'Get the weather!'
+	});
+});
+
+app.get('/projects', (req,res) => {
+	res.render('projects.hbs', {
+		pageTitle: 'Projects Page',
+		welcomeMessage: 'Our projects!'
 	});
 });
 
@@ -88,8 +89,8 @@ app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage:'bad request'
 	});
-})
+});
 
-app.listen(port, () => {
+server.listen(port, () => {
 	console.log(`Server is listening on port ${port}.`);
 });
