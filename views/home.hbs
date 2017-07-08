@@ -47,7 +47,7 @@ axios.get(geocodedUrl).then((response) => {
 	document.getElementById("car").innerHTML = ("Your darksky url is " + weather);
 	
 	
-	return axios.put(weather);
+	return axios.jsonp(weather);
 
 
 
