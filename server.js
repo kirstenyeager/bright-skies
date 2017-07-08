@@ -18,6 +18,13 @@ app.use(express.static(__dirname + '/app'));
 
 const port = process.env.PORT || 3000;
 
+io.on('connection', (socket) => {
+	console.log('New user connected');
+
+socket.on('disconnect', () => {
+			console.log('user disconnected'); 
+		});
+});
 
 
 //create web pages with hbs
