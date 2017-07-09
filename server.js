@@ -13,7 +13,7 @@ const express = require('express')
 
 var io = socketIO(server);
 
-app.use(express.static(__dirname + '/app') cors());
+app.use(express.static(__dirname + '/app'), cors());
 //app.set('port', process.env.PORT || 3000);
 //app.use(proxy('/service', 'http://localhost:8080'));
 
